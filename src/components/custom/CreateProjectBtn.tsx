@@ -1,5 +1,5 @@
 "use client"
-import { createProject } from "@/actions/createProject"
+import { createProject } from "@/actions/actions"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -11,16 +11,13 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { faPen } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { useToast } from "@/components/ui/use-toast"
 import dynamic from "next/dynamic"
 import LoadingBtn from "./LoadingBtn"
 
 
-function CreateProjectBtn() {
+function CreateProjectBtn(props:any) {
     const { toast } = useToast()
     const [title, setTitle] = useState<string>("")
     const [gitLink, setGitLink] = useState<string>("")
@@ -30,9 +27,9 @@ function CreateProjectBtn() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className='' size="lg" >Create Project</Button>
+        <Button variant="outline" className='' value={"LOl"} size="lg" >{props.btnName}</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="md:w-[400px] w-[300px] rounded-md">
         <DialogHeader>
           <DialogTitle>Create New Project</DialogTitle>
         </DialogHeader>
@@ -80,7 +77,7 @@ function CreateProjectBtn() {
           >
             {createProjectBtn}
           </Button>}
-          {!show && <LoadingBtn/>}
+          {!show && <LoadingBtn btnName="Creating Project"/>}
       </DialogContent>
     </Dialog>
   )

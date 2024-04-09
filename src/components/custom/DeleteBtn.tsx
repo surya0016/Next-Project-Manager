@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import {
     AlertDialog,
@@ -11,14 +12,13 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"  
 import { Button } from '../ui/button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { deleteProject } from '@/actions/actions'
 
-function DeleteBtn() {
+function DeleteBtn(props:any) {
   return (
     <>
     <AlertDialog>
-    <AlertDialogTrigger><Button variant="outline" className='hover:text-red-500 cursor-pointer'><FontAwesomeIcon icon={faTrash}/>Delete</Button></AlertDialogTrigger>
+    <AlertDialogTrigger><Button variant="outline" className='hover:text-red-500 cursor-pointer'>Delete</Button></AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -29,7 +29,7 @@ function DeleteBtn() {
             </AlertDialogHeader>
             <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
+                <AlertDialogAction onClick={()=>deleteProject(props.id)}>Continue</AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>
     </AlertDialog>

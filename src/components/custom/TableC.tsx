@@ -13,6 +13,7 @@ import { EditBtn } from './EditBtn'
 import DeleteBtn from './DeleteBtn'
 import prisma from "@/db"
 import LoadingBtn from './LoadingBtn'
+import DropDownAction from './DropDownAction'
 
 
 async function TableC() {
@@ -32,9 +33,9 @@ async function TableC() {
                     <TableHead>Project Title</TableHead>
                     <TableHead>Date</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>GitHub Link</TableHead>
-                    <TableHead>Edit</TableHead>
-                    <TableHead>Delete</TableHead>
+                    <TableHead className='hidden md:table-cell'>GitHub Link</TableHead>
+                    <TableHead className='hidden md:table-cell'>Edit</TableHead>
+                    <TableHead className='hidden md:table-cell'>Delete</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -42,10 +43,11 @@ async function TableC() {
                     <TableRow key={project.id}>
                         <TableCell className="font-medium">{project.title}</TableCell>
                         <TableCell>{`${project.date}`}</TableCell>
-                        <TableCell><DropDownButton/></TableCell>
-                        <TableCell className="cursor-pointer hover:text-blue-500"><a href={project.gitLink!} target='_blank'> {project.gitLink}</a></TableCell>
-                        <TableCell className='text-center'><EditBtn/></TableCell>
-                        <TableCell className='text-center'><DeleteBtn/></TableCell>
+                        <TableCell><DropDownButton id={project.id}/></TableCell>
+                        <TableCell className="cursor-pointer hover:text-blue-500 hidden md:table-cell"><a href={project.gitLink!} target='_blank'> {project.gitLink}</a></TableCell>
+                        <TableCell className='text-center hidden md:table-cell'><EditBtn id={project.id}/></TableCell>
+                        <TableCell className='text-center hidden md:table-cell'><DeleteBtn id={project.id}/></TableCell>
+                        <TableCell className='text-center md:hidden table-cell'><DropDownAction id={project.id}/></TableCell>
                     </TableRow>
                 ))}
             </TableBody>
